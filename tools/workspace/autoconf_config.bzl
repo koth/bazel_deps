@@ -704,6 +704,9 @@ autoconf_standard_defines = [
     "@com_github_mjbots_bazel_deps//conditions:long_double_8bytes" : [
         "SIZEOF_LONG_DOUBLE=8",
     ],
+    "//conditions:default" : [
+       "SIZEOF_LONG_DOUBLE=16",
+    ],
 }) + select({
     "@com_github_mjbots_bazel_deps//conditions:long_8bytes" : [
         "ALIGNOF_UNSIGNED_LONG=8",
@@ -725,6 +728,16 @@ autoconf_standard_defines = [
         "SIZEOF_UINTPTR_T=4",
         "SIZEOF_OFF_T=4",
     ],
+    "//conditions:default" : [
+        "ALIGNOF_UNSIGNED_LONG=8",
+        "SIZEOF_LONG=8",
+        "SIZEOF_VOID_P=8",
+        "ALIGNOF_VOID_P=8",
+        "SIZEOF_PTHREAD_T=8",
+        "SIZEOF_TIME_T=8",
+        "SIZEOF_UINTPTR_T=8",
+        "SIZEOF_OFF_T=8",
+    ],
 }) + select({
     "@com_github_mjbots_bazel_deps//conditions:sizet_8bytes" : [
         "SIZEOF_SIZE_T=8",
@@ -733,6 +746,10 @@ autoconf_standard_defines = [
     "@com_github_mjbots_bazel_deps//conditions:sizet_4bytes" : [
         "SIZEOF_SIZE_T=4",
         "SIZEOFSSIZE_T=4",
+    ],
+    "//conditions:default" : [
+        "SIZEOF_SIZE_T=8",
+        "SIZEOFSSIZE_T=8",
     ],
 }) + select({
     "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
@@ -752,5 +769,19 @@ autoconf_standard_defines = [
     "@com_github_mjbots_bazel_deps//conditions:arm" : [
         "HAVE_CPU_ARM",
         "TARGET_CPU=\"ARM\"",
+    ],
+    "//conditions:default" : [
+        "HAVE_DECL__I386__=0",
+        "HAVE_DECL__X86_64__",
+        "HAVE_CPU_X86_64",
+        "TARGET_CPU=\"x86_64\"",
+        "HAVE_GCC_ASM_FOR_X64",
+        "HAVE_GCC_ASM_FOR_X86",
+        "HAVE_SSE",
+        "HAVE_SSE2",
+        "HAVE_SSE41",
+        "HAVE_XMMINTRIN_H",
+        "HAVE_EMMINTRIN_H",
+        "HAVE_SMMINTRIN_H",
     ],
 })

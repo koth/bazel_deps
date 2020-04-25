@@ -69,6 +69,10 @@ cc_library(
             "intel/filter_sse2_intrinsics.c",
             "intel/intel_init.c",
         ],
+        "//conditions:default" : [
+            "intel/filter_sse2_intrinsics.c",
+            "intel/intel_init.c",
+        ],
     }),
     includes = ["."],
     copts = [
@@ -88,6 +92,9 @@ autoconf_config(
             "PNG_ARM_NEON_OPT=0",
         ],
         "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+            "PNG_INTEL_SSE_OPT",
+        ],
+        "//conditions:default" : [
             "PNG_INTEL_SSE_OPT",
         ],
     }),

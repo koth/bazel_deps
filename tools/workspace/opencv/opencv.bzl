@@ -93,6 +93,8 @@ def opencv_base(config = None):
             _format_config("armeabihf", config.get("opts", [])),
             "@com_github_mjbots_bazel_deps//conditions:x86_64" :
             _format_config("x86_64", config.get("opts", [])),
+            "//conditions:default" : 
+             _format_config("x86_64", config.get("opts", [])),
         }),
     )
 
