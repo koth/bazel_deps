@@ -204,6 +204,7 @@ def opencv_base(config = None):
     native.cc_library(
         name = "opencv",
         deps = [":{}".format(module) for module in config['modules']],
+        copts=["-Iinclude"],
     )
 
 def opencv_module(*args, name = None, config = None,
