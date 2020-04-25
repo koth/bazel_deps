@@ -25,6 +25,7 @@ _OPENCV_COPTS = [
     "-D__STDC_CONSTANT_MACROS",
     "-D__STDC_FORMAT_MACROS",
     "-D__STDC_LIMIT_MACROS",
+    "-I$(GENDIR)/external/opencv/include/",
     "-I$(GENDIR)/external/opencv/private/",
 ]
 
@@ -204,7 +205,6 @@ def opencv_base(config = None):
     native.cc_library(
         name = "opencv",
         deps = [":{}".format(module) for module in config['modules']],
-        copts=["-Iinclude"],
     )
 
 def opencv_module(*args, name = None, config = None,
@@ -270,7 +270,7 @@ def opencv_module(*args, name = None, config = None,
             prefix + "/include/**/*.hpp",
         ]) + extra_headers,
         deps = ["{}".format(x) for x in deps] + [":_base_headers"],
-        includes = [prefix + "/include"],
+        includes = [prefix + "/include","-Iexternal/opencv/include"],
         copts = _OPENCV_COPTS + [
             "-Iexternal/opencv/" + prefix + "/src",
             "-I$(GENDIR)/external/opencv/" + prefix + "/src",
