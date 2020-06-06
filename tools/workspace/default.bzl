@@ -66,6 +66,8 @@ load("//tools/workspace/xorgproto:repository.bzl", "xorgproto_repository")
 load("//tools/workspace/xtrans:repository.bzl", "xtrans_repository")
 load("//tools/workspace/zlib:repository.bzl", "zlib_repository")
 load("//tools/workspace/gumbo:repository.bzl", "gumbo_repository")
+load("//tools/workspace/gumboquery:repository.bzl", "gumboquery_repository")
+
 def get_default_config():
     return {
         "opts" : ["sse", "sse2"],
@@ -176,3 +178,5 @@ def add_default_repositories(excludes = [], config = get_default_config()):
         zlib_repository(name = "zlib")
     if "gumbo" not in excludes:
        gumbo_repository(name="gumbo")
+    if "gumboquery" not in excludes:
+       gumboquery_repository(name="gumboquery")
